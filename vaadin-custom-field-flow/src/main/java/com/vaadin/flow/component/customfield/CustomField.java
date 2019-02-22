@@ -27,13 +27,11 @@ import org.slf4j.LoggerFactory;
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
-import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasValidation;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.Synchronize;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.dom.Element;
 
@@ -127,7 +125,7 @@ public abstract class CustomField<T> extends AbstractField<CustomField<T>, T>
                     "Component to remove cannot be null");
             Element parent = component.getElement().getParent();
             if (parent == null) {
-                LoggerFactory.getLogger(HasComponents.class).debug(
+                LoggerFactory.getLogger(CustomField.class).debug(
                         "Remove of a component with no parent does nothing.");
                 return;
             }
