@@ -1,5 +1,9 @@
 package com.vaadin.flow.component.customfield;
 
+import java.util.Objects;
+
+import org.slf4j.LoggerFactory;
+
 /*
  * #%L
  * Vaadin CustomField for Vaadin 10
@@ -21,6 +25,7 @@ package com.vaadin.flow.component.customfield;
  */
 
 import com.vaadin.flow.component.AbstractField;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Focusable;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
@@ -28,7 +33,9 @@ import com.vaadin.flow.component.HasValidation;
 import com.vaadin.flow.component.HasValue;
 import com.vaadin.flow.component.Synchronize;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.dom.Element;
 
 /**
  * A {@link HasValue} whose UI content can be constructed by the user, enabling
@@ -43,7 +50,7 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 @Tag("vaadin-custom-field")
 @HtmlImport("frontend://bower_components/vaadin-custom-field/src/vaadin-custom-field.html")
 public abstract class CustomField<T> extends AbstractField<CustomField<T>, T>
-    implements HasComponents, HasSize, HasValidation, Focusable<CustomField> {
+    implements HasSize, HasValidation, Focusable<CustomField> {
 
     /**
      * Default constructor.
@@ -88,6 +95,49 @@ public abstract class CustomField<T> extends AbstractField<CustomField<T>, T>
      */
     protected void updateValue() {
         setModelValue(generateModelValue(), false);
+    }
+
+    /**
+     * Adds the given components as children of this component.
+     *
+     * @param components
+     *            the components to add
+     */
+    protected void add(Component... components) {
+        Objects.requireNonNull(components, "Components should not be null");
+        for (Component component : components) {
+            Objects.requireNonNull(component,
+                    "Component to add cannot be null");
+            getElement().appendChild(component.getElement());
+        }
+    }
+
+    /**
+     * Removes the given child components from this component.
+     *
+     * @param components
+     *            the components to remove
+     * @throws IllegalArgumentException
+     *             if any of the components is not a child of this component
+     */
+    protected void remove(Component... components) {
+        Objects.requireNonNull(components, "Components should not be null");
+        for (Component component : components) {
+            Objects.requireNonNull(component,
+                    "Component to remove cannot be null");
+            Element parent = component.getElement().getParent();
+            if (parent == null) {
+                LoggerFactory.getLogger(HasComponents.class).debug(
+                        "Remove of a component with no parent does nothing.");
+                return;
+            }
+            if (getElement().equals(parent)) {
+                getElement().removeChild(component.getElement());
+            } else {
+                throw new IllegalArgumentException("The given component ("
+                        + component + ") is not a child of this component");
+            }
+        }
     }
 
     /**
