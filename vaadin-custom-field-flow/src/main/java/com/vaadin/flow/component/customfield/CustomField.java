@@ -1,9 +1,5 @@
 package com.vaadin.flow.component.customfield;
 
-import java.util.Objects;
-
-import org.slf4j.LoggerFactory;
-
 /*
  * #%L
  * Vaadin CustomField for Vaadin 10
@@ -23,6 +19,10 @@ import org.slf4j.LoggerFactory;
  * limitations under the License.
  * #L%
  */
+
+import java.util.Objects;
+
+import org.slf4j.LoggerFactory;
 
 import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.component.Component;
