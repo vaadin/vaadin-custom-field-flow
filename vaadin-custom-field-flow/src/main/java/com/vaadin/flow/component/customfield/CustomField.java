@@ -88,7 +88,7 @@ public abstract class CustomField<T> extends AbstractField<CustomField<T>, T>
     @Override
     protected abstract void setPresentationValue(T newPresentationValue);
 
-	/**
+    /**
      * Regenerates the value by calling {@link #generateModelValue()} and updates the model.
      * If the value is different than the current one, a {@link ValueChangeEvent} will be generated with {@link ValueChangeEvent#isFromClient()} set to <code>true</code>
      *
