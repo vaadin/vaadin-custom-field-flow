@@ -11,7 +11,7 @@ vaadin-custom-field-flow-integration-tests/error-screenshots/
 *.launch
 .settings/
 .vscode/*
-vaadin-custom-field-flow-integration-tests/src/test/resources/webdriver/
+webdriver/
 
 
 # The following files are generated/updated by flow-maven-plugin
