@@ -75,7 +75,7 @@ public class CustomFieldView extends DemoView {
 
     // begin-source-example
     // source-example-heading: Value change event
-    public static class ValueChangeEvent extends VerticalLayout {
+    public static class ValueChangeEvent extends HorizontalLayout {
         private final Div display = new Div();
 
         ValueChangeEvent() {
@@ -90,7 +90,7 @@ public class CustomFieldView extends DemoView {
 
     // begin-source-example
     // source-example-heading: Required
-    public static class MainForRequired extends VerticalLayout {
+    public static class MainForRequired extends HorizontalLayout {
         private final PriceField priceField = new PriceField();
 
         MainForRequired() {
@@ -109,6 +109,7 @@ public class CustomFieldView extends DemoView {
             });
 
             VerticalLayout verticalLayout = new VerticalLayout();
+            verticalLayout.setPadding(false);
             verticalLayout.add(priceField, button);
             add(verticalLayout);
         }
