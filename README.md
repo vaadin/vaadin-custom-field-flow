@@ -65,7 +65,6 @@ in the root directory. `-DskipITs` will skip the integration tests, which requir
 
 ```mvn install```
 
-To compile and run demos locally execute
 
 ```
 mvn compile
